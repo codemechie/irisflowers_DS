@@ -10,10 +10,9 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
-# Load dataset
-url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/iris.csv"
-names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
-dataset = read_csv(url, names=names)
+
+from Iris.loader import dataset
+
 # Split-out validation dataset
 array = dataset.values
 X = array[:,0:4]
@@ -37,6 +36,7 @@ for name, model in models:
 	names.append(name)
 	print('%s: %f (%f)' % (name, cv_results.mean(), cv_results.std()))
 # Compare Algorithms
-plt.boxplot(results, labels=names)
+plt.boxplot(results, tick_labels=names)
 plt.title('Algorithm Comparison')
 plt.show()
+
